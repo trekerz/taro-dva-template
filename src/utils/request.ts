@@ -5,7 +5,7 @@ import {
 } from '../config'
 import requestConfig, {
   commonParam
-} from '../api'
+} from '../config/requestConfig'
 import Tips from './tips'
 
 // import { createLogger } from './logger'
