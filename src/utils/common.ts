@@ -10,7 +10,7 @@ export const pad = function (str: string, length?: number) {
  * 时间格式的转换
  */
 export const formatTime = (time) => {
-  return `${pad(time.getHours())}:${pad(time.getMinutes())}:${pad(time.getSeconds())}:.${pad(time.getMilliseconds(), 3)}`
+  return `${pad(time.getHours())}:${pad(time.getMinutes())}:${pad(time.getSeconds())}.${pad(time.getMilliseconds(), 3)}`
 }
 
 /**

@@ -39,6 +39,9 @@ function printBuffer(logEntry, options) {
 }
 
 interface ILogEntry {
+  title?: string
+  req?: any
+  res?: any
   started?: object // 触发时间
 }
 
