@@ -5,7 +5,9 @@
     "no-unused-vars": ["error", { "varsIgnorePattern": "Taro" }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
     "@typescript-eslint/explicit-function-return-type": 0,
-    "@typescript-eslint/no-empty-function": ["warn"]
+    "@typescript-eslint/no-empty-function": ["warn"],
+    "@typescript-eslint/no-var-requires": true,
+    "import/no-commonjs": true
   },
   "parserOptions": {
     "ecmaFeatures": {
