@@ -33,3 +33,10 @@ export const SHAREINFO = {
   'path': '路径',
   'imageUrl': ''
 }
+
+/**
+ * 基础配置
+ */
+export const APPCONFIG = {
+  appId: 'wx123456789101112',
+}
