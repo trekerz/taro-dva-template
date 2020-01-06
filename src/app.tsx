@@ -16,6 +16,7 @@ import './app.scss'
 
 const dvaApp = dva.createApp({
   initialState: {},
+  enableLog: false,
   models
 })
 

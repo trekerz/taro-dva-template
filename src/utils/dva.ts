@@ -9,7 +9,10 @@ let registered
 
 function createApp(opt) {
   // redux日志
-  opt.onAction = [createLogger()]
+  opt.onAction = []
+  if (opt.enableLog) {
+    opt.onAction.push(createLogger())
+  }
   app = create(opt)
   app.use(createLoading({}))
 
