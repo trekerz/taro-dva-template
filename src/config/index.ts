@@ -1,9 +1,8 @@
 /**
  * 线上环境
- * 为了方便测试，使用的是聚合数据免费接口
- * 网址：https://www.juhe.cn/
+ * 这里测试使用的是 spaceX 接口
  */
-export const ONLINEHOST = 'http://api.juheapi.com'
+export const ONLINEHOST = 'https://api.spacexdata.com'
 
 /**
  * 测试环境

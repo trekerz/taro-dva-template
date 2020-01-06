@@ -1,4 +1,4 @@
 
 export default {
-  test: '/wechat/perfect-info', //xxx接口
+  getNextLaunch: '/v2/launches/next', // 获取下次发射任务
 }
