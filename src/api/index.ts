@@ -6,6 +6,8 @@ export const commonParam = {}
 /**
  * 请求映射文件
  */
-export const requestConfig = {
+const requestConfig = {
   loginUrl: '/api/user/wechat-auth', // 微信登录接口
 }
+
+export default requestConfig
