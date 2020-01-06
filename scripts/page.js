@@ -19,18 +19,18 @@ import { View } from '@tarojs/components'
 // import { connect } from '@tarojs/redux'
 // import Api from '../../utils/request'
 // import Tips from '../../utils/tips'
-import { I${capDirName}Props, I${capDirName}State } from './${dirName}.interface'
+import { IProps, IState } from './${dirName}.interface'
 // import { } from '../../components'
 
 // @connect(({ ${dirName} }) => ({
 //     ...${dirName},
 // }))
 
-class ${capDirName} extends Component<I${capDirName}Props, I${capDirName}State> {
+class ${capDirName} extends Component<IProps, IState> {
   config: Config = {
     navigationBarTitleText: '标题'
   }
-  constructor(props: I${capDirName}Props) {
+  constructor(props: IProps) {
     super(props)
     this.state = {}
   }
@@ -103,17 +103,17 @@ const interfaceTemp = `
  * ${dirName}.state 参数类型
  *
  * @export
- * @interface I${capDirName}State
+ * @interface IState
  */
-export interface I${capDirName}State { }
+export interface IState { }
 
 /**
  * ${dirName}.props 参数类型
  *
  * @export
- * @interface I${capDirName}Props
+ * @interface IProps
  */
-export interface I${capDirName}Props { }
+export interface IProps { }
 `
 
 fs.mkdirSync(`./src/pages/${dirName}`)

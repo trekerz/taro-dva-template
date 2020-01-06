@@ -16,17 +16,17 @@ if (!dirName) {
 const indexTemp = `import './${dirName}.scss'
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import { I${capDirName}Props, I${capDirName}State } from './${dirName}.interface'
+import { IProps, IState } from './${dirName}.interface'
 
-class ${capDirName} extends Component<I${capDirName}Props, I${capDirName}State> {
+class ${capDirName} extends Component<IProps, IState> {
   static options = {
     addGlobalClass: true
   }
-  constructor(props: I${capDirName}Props) {
+  constructor(props: IProps) {
     super(props)
     this.state = {}
   }
-  static defaultProps: I${capDirName}Props = {}
+  static defaultProps: IProps = {}
 
   componentWillMount () { }
 
@@ -69,17 +69,17 @@ const interfaceTemp = `
  * ${dirName}.state 参数类型
  *
  * @export
- * @interface I${capDirName}State
+ * @interface IState
  */
-export interface I${capDirName}State { }
+export interface IState { }
 
 /**
  * ${dirName}.props 参数类型
  *
  * @export
- * @interface I${capDirName}Props
+ * @interface IProps
  */
-export interface I${capDirName}Props { }
+export interface IProps { }
 `
 
 fs.mkdirSync(`./src/components/${dirName}`)
