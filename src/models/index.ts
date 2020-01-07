@@ -1,5 +1,6 @@
-import index from '../pages/index/model'
+import { requireModules } from '../utils/utils'
 
-export default [
-  index
-]
+const modelContext = require.context('../pages', true, /model\.ts$/)
+const models = requireModules(modelContext)
+
+export default models
