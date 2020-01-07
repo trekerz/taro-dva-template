@@ -23,7 +23,7 @@ import { IProps, IState } from './${dirName}.interface'
 // import { } from '../../components'
 
 // @connect(({ ${dirName} }) => ({
-//     ...${dirName},
+//   ...${dirName},
 // }))
 
 class ${capDirName} extends Component<IProps, IState> {
@@ -83,8 +83,8 @@ export const testApi = data => Api.test(
 
 // model模板
 const modelTemp = `
-// import Taro from '@tarojs/taro';
-import * as ${dirName}Api from './service';
+// import Taro from '@tarojs/taro'
+import * as ${dirName}Api from './service'
 
 export default {
   namespace: '${dirName}',

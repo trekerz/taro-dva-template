@@ -57,13 +57,6 @@ const scssTemp = `
 }
 `
 
-// config 接口地址配置模板
-const configTemp = `
-export default {
-  test: '/wechat/perfect-info', //xxx接口
-}
-`
-
 const interfaceTemp = `
 /**
  * ${dirName}.state 参数类型
