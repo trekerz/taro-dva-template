@@ -7,8 +7,9 @@ import { connect } from '@tarojs/redux'
 import { IProps, IState, IData } from './index.interface'
 // import { } from '../../components'
 
-@connect(({ index }) => ({
-    ...index,
+@connect(state => ({
+  ...state.index,
+  loading: state.loading
 }))
 
 class Index extends Component<IProps, IState> {
