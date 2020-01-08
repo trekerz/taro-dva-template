@@ -6,9 +6,7 @@ import { isSuccess } from '../utils/request'
 // 全局model
 export default {
   namespace: 'global',
-  state: {
-    hasLogin: false,
-  },
+  state: {},
 
   effects: {
     // 检查是否绑定
@@ -17,9 +15,6 @@ export default {
       const data = isSuccess(res)
       return data
     },
-  },
-
-  reducers: {
     // 检查是否已登录
     checkIfLogin(state) {
       const token = getToken()
@@ -27,8 +22,11 @@ export default {
       if (token) {
         hasLogin = true
       }
-      return { ...state, hasLogin }
+      return hasLogin
     },
+  },
+
+  reducers: {
   }
 
 }
