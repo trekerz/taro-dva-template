@@ -22,8 +22,9 @@ import { View } from '@tarojs/components'
 import { IProps, IState } from './${dirName}.interface'
 // import { } from '../../components'
 
-// @connect(({ ${dirName} }) => ({
-//   ...${dirName},
+// @connect(state => ({
+//   ...state.${dirName},
+//   loading: state.loading
 // }))
 
 class ${capDirName} extends Component<IProps, IState> {
@@ -68,17 +69,22 @@ const scssTemp = `
 // config 接口地址配置模板
 const configTemp = `
 export default {
-  test: '/wechat/perfect-info', //xxx接口
+  //xxx接口
+  test: {
+    url: '/wechat/perfect-info',
+    method: 'GET'
+  },
 }
 `
 
 // 接口请求模板
 const serviceTemp = `
 import Api from '../../utils/request'
+import { IResponse } from '../../types/api'
+import { IData } from './index.interface'
 
-export const testApi = data => Api.test(
-  data
-)
+export const testApi = (data): IResponse<IData> =>
+  Api.test(data)
 `
 
 // model模板
@@ -88,8 +94,7 @@ import * as ${dirName}Api from './service'
 
 export default {
   namespace: '${dirName}',
-  state: {
-  },
+  state: {},
 
   effects: {},
 
@@ -114,6 +119,14 @@ export interface IState { }
  * @interface IProps
  */
 export interface IProps { }
+
+/**
+ * 接口返回数据类型
+ *
+ * @export
+ * @interface IData
+ */
+export interface IData { }
 `
 
 fs.mkdirSync(`./src/pages/${dirName}`)
