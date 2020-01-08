@@ -1,4 +1,5 @@
 import { requireModules } from '../utils/utils'
+import globalRequestConfig from '../services/config'
 
 /**
  * 请求的公共参数
@@ -17,17 +18,6 @@ if (requestList) {
       requestConfig[reqKey] = req[reqKey]
     })
   })
-}
-
-/**
- * 全局api
- */
-const globalRequestConfig = {
-  // 检查是否绑定
-  checkIfBinded: {
-    url: '/{}/check-bind',
-    method: 'GET'
-  },
 }
 
 export default {
