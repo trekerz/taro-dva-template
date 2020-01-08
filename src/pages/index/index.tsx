@@ -9,6 +9,7 @@ import { IProps, IState, IData } from './index.interface'
 
 @connect(state => ({
   ...state.index,
+  global: state.global,
   loading: state.loading
 }))
 

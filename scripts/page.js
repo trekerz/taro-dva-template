@@ -24,6 +24,7 @@ import { IProps, IState } from './${dirName}.interface'
 
 // @connect(state => ({
 //   ...state.${dirName},
+//   global: state.global,
 //   loading: state.loading
 // }))
 
