@@ -1,9 +1,9 @@
 /**
  * 批量导入模块
  */
-export function requireModules(context) {
+export function requireModules(context): any[] {
   if (!context || !context.keys) {
-    return
+    return []
   }
   let result = []
   // 导入各模块
