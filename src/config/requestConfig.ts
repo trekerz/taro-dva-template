@@ -6,21 +6,31 @@ import { requireModules } from '../utils/utils'
 export const commonParam = {}
 
 /**
- * 请求映射文件
+ * 各页面api映射文件
  */
 const reqContext = require.context('../pages', true, /config\.ts$/)
 const requestList = requireModules(reqContext)
-const requests = {}
+const requestConfig = {}
 if (requestList) {
   requestList.forEach(req => {
     Object.keys(req).forEach(reqKey => {
-      requests[reqKey] = req[reqKey]
+      requestConfig[reqKey] = req[reqKey]
     })
   })
 }
-const requestConfig = {
-  loginUrl: '/api/user/wechat-auth', // 微信登录接口
-  ...requests
+
+/**
+ * 全局api
+ */
+const globalRequestConfig = {
+  // 检查是否绑定
+  checkIfBinded: {
+    url: '/{}/check-bind',
+    method: 'GET'
+  },
 }
 
-export default requestConfig
+export default {
+  ...requestConfig,
+  ...globalRequestConfig
+}

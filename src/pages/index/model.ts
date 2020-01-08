@@ -9,6 +9,7 @@ export default {
     v: '2.0'
   },
   effects: {
+    // 获取下次发射任务
     * getNextLaunch({ payload }, { select, call, put }) {
       const { v } = yield select(state => state.index)
       console.log(v)
