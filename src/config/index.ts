@@ -38,4 +38,5 @@ export const SHAREINFO = {
  */
 export const APPCONFIG = {
   appId: 'wx123456789101112',
+  tenantCode: 'test'
 }

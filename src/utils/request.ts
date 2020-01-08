@@ -1,12 +1,16 @@
 import Taro, { Component } from '@tarojs/taro'
 import {
   ISMOCK,
-  MAINHOST
+  MAINHOST,
+  APPCONFIG
 } from '../config'
 import requestConfig, {
   commonParam
 } from '../config/requestConfig'
 import Tips from './tips'
+import { getToken } from './storage'
+import { HTTP_CODE } from './constant'
+import { IResponse } from '../types/api'
 
 // import { createLogger } from './logger'
 
@@ -28,8 +32,6 @@ export class Request {
   static isLogining: boolean = false
   // 导出的api对象
   static apiLists: { [key: string]: () => any } = {}
-  // token
-  static token: string = ''
 
   // constructor(setting) {
 
@@ -43,17 +45,21 @@ export class Request {
    * @memberof Request
    */
   static combineOptions(opts, data: TDatas, method: TMethods): IOptions {
-    typeof opts === 'string' && (opts = { url: opts })
+    if (typeof opts === 'string') {
+      opts = {
+        url: opts
+      }
+    }
+
+    // 填充url中的参数
+    opts.url = opts.url
+      .replace(/\{\}/g, APPCONFIG.tenantCode)
+
     return {
       data: { ...commonParam, ...opts.data, ...data },
       method: opts.method || data.method || method || 'GET',
       url: `${opts.host || MAINHOST}${opts.url}`
     }
-  }
-
-  static getToken() {
-    !this.token && (this.token = Taro.getStorageSync('token'))
-    return this.token
   }
 
   /**
@@ -62,11 +68,17 @@ export class Request {
    * @param {IOptions} opts
    */
   static async request(opts: IOptions) {
-    // token不存在
-    // if (!this.getToken()) { await this.login() }
+    const token = getToken()
+
+    // // token不存在
+    // if (!token) {
+    //   // await this.login()
+    //   this.returnToLogin()
+    //   return
+    // }
 
     // token存在
-    // let options = Object.assign(opts, { header: { 'token': this.getToken() } })
+    Object.assign(opts, { header: { 'token': token } })
 
     //  Taro.request 请求
     const res = await Taro.request(opts)
@@ -75,59 +87,75 @@ export class Request {
     if (ISMOCK) { return res.data }
 
     // 登陆失效
-    if (res.data.code === 99999) {
-      await this.login()
-      return this.request(opts)
+    if (res.data.statusCode === HTTP_CODE.UNAUTHORIZED.code) {
+      // await this.login()
+      // return this.request(opts)
+      this.returnToLogin()
+      return
     }
 
     // 请求成功
-    // if (res.data && res.data.code === 0 || res.data.succ === 0) { return res.data }
-    if (res.data) { return res.data }
+    if (res.data && res.data.statusCode === HTTP_CODE.SUCCESS.code) {
+      return res.data
+    }
 
     // 请求错误
-    const d = { ...res.data, err: (res.data && res.data.msg) || `网络开小差啦～` }
-    Tips.toast(d.err)
-    throw new Error(d.err)
+    const d = {
+      ...res.data,
+      statusMessage: (res.data && res.data.statusMessage) || `网络开小差啦～`
+    }
+    Tips.toast(d.statusMessage)
+    return d
   }
 
-  /**
-   *
-   * @static 登陆
-   * @returns  promise
-   * @memberof Request
-   */
-  static login() {
-    if (!this.isLogining) { this.loginReadyPromise = this.onLogining() }
-    return this.loginReadyPromise
-  }
+  // /**
+  //  *
+  //  * @static 登陆
+  //  * @returns  promise
+  //  * @memberof Request
+  //  */
+  // static login() {
+  //   if (!this.isLogining) { this.loginReadyPromise = this.onLogining() }
+  //   return this.loginReadyPromise
+  // }
+
+  // /**
+  //  *
+  //  * @static 登陆的具体方法
+  //  * @returns
+  //  * @memberof Request
+  //  */
+  // static onLogining() {
+  //   this.isLogining = true
+  //   return new Promise(async (resolve, reject) => {
+  //     // 获取code
+  //     const { code } = await Taro.login()
+
+  //     // 请求登录
+  //     const { data } = await Taro.request({
+  //       url: `${MAINHOST}${requestConfig.loginUrl}`,
+  //       data: { code: code }
+  //     })
+
+  //     if (data.code !== 0 || !data.data || !data.data.token) {
+  //       reject()
+  //       return
+  //     }
+
+  //     Taro.setStorageSync('token', data.data.token)
+  //     this.isLogining = false
+  //     resolve()
+  //   })
+  // }
 
   /**
-   *
-   * @static 登陆的具体方法
-   * @returns
-   * @memberof Request
+   * 返回登录页
    */
-  static onLogining() {
-    this.isLogining = true
-    return new Promise(async (resolve, reject) => {
-      // 获取code
-      const { code } = await Taro.login()
-
-      // 请求登录
-      const { data } = await Taro.request({
-        url: `${MAINHOST}${requestConfig.loginUrl}`,
-        data: { code: code }
-      })
-
-      if (data.code !== 0 || !data.data || !data.data.token) {
-        reject()
-        return
-      }
-
-      Taro.setStorageSync('token', data.data.token)
-      this.isLogining = false
-      resolve()
-    })
+  static returnToLogin() {
+    // 跳转到登录页
+    // Taro.reLaunch({
+    //   url: '/pages/login/login'
+    // })
   }
 
   /**
@@ -161,6 +189,22 @@ export class Request {
 
     return this.apiLists
   }
+}
+
+// 验证接口返回值
+export function isSuccess<T>(res: IResponse<T>): T | null {
+  if (res && res.statusCode === HTTP_CODE.SUCCESS.code) {
+    return res.responseContent
+  }
+  return null
+}
+
+// 验证保存类接口返回值
+export function isSuccessSave<T>(res: IResponse<T>): boolean {
+  if (res && res.statusCode === HTTP_CODE.SUCCESS.code) {
+      return true
+  }
+  return false
 }
 
 // 导出
