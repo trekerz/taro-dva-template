@@ -51,9 +51,24 @@ export class Request {
       }
     }
 
-    // 填充url中的参数
+    // 填充url中的常量
     opts.url = opts.url
       .replace(/\{\}/g, APPCONFIG.tenantCode)
+
+    // 填充url中的变量
+    // 变量格式为：{变量名}
+    const varNameList = opts.url.match(/\{.*?\}/g)
+    if (varNameList && varNameList.length) {
+      varNameList.map(v => {
+        const varName = v.replace('{', '').replace('}', '')
+        if (data && data[varName]) {
+          opts.url = opts.url.replace(v, data[varName])
+          delete data[varName]
+        } else {
+          opts.url = opts.url.replace(v, '')
+        }
+      })
+    }
 
     return {
       data: { ...commonParam, ...opts.data, ...data },
