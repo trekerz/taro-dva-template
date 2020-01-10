@@ -51,21 +51,24 @@ export class Request {
       }
     }
 
+    // 复制一份要改的url
+    let _url = opts.url
+
     // 填充url中的常量
-    opts.url = opts.url
+    _url = _url
       .replace(/\{\}/g, APPCONFIG.tenantCode)
 
     // 填充url中的变量
     // 变量格式为：{变量名}
-    const varNameList = opts.url.match(/\{.*?\}/g)
+    const varNameList = _url.match(/\{.*?\}/g)
     if (varNameList && varNameList.length) {
       varNameList.map(v => {
         const varName = v.replace('{', '').replace('}', '')
         if (data && data[varName]) {
-          opts.url = opts.url.replace(v, data[varName])
+          _url = _url.replace(v, data[varName])
           delete data[varName]
         } else {
-          opts.url = opts.url.replace(v, '')
+          _url = _url.replace(v, '')
         }
       })
     }
@@ -73,7 +76,7 @@ export class Request {
     return {
       data: { ...commonParam, ...opts.data, ...data },
       method: opts.method || data.method || method || 'GET',
-      url: `${opts.host || MAINHOST}${opts.url}`
+      url: `${opts.host || MAINHOST}${_url}`
     }
   }
 
