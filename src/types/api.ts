@@ -59,11 +59,16 @@ export interface IPagination {
 }
 
 /**
+* 列表类接口数据的数据结构
+*/
+export interface IListResponseData<T> extends IPagination {
+  list: T[]
+}
+
+/**
 * 列表类接口的返回数据结构
 */
-export interface IListResponse<T> extends IPagination {
-  list: Array<T>
-}
+export interface IListResponse<T> extends IResponse<IListResponseData<T>> {}
 
 export interface IPageParams {
   pageNum: number

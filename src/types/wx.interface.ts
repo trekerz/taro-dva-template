@@ -10,3 +10,19 @@ export interface IWXUserInfo {
   city: string
   language: string
 }
+
+/**
+ * input type类型
+ */
+export type IWXInputType = 'text' | 'number' | 'idcard' | 'digit'
+
+/**
+ * taro - imageloader - files参数类型
+ */
+export interface ITaroImageLoaderFiles {
+  url: string
+  file: {
+    path: string
+    size: number
+  }
+}
