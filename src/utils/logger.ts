@@ -1,7 +1,4 @@
-import { formatTime } from './common'
-
 // 封装 log 函数
-
 const defaults = {
   level: 'log',
   logger: console,
@@ -32,7 +29,7 @@ function printBuffer(logEntry, options) {
   const styles = s => `color: ${s}; font-weight: bold;`
 
   // render
-  logger.group(`%c ${title} @${formatTime(started)}`, ...headerCss)
+  logger.group(`%c ${title} @${started}`, ...headerCss)
   logger.log('%c req', styles(colors.req), req)
   logger.log('%c res', styles(colors.res), res)
   logger.groupEnd()
