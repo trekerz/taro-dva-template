@@ -3,6 +3,7 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import { ConnectState, ConnectProps } from '@/models/connect.d'
+import { HtmlParse } from '@/components/htmlParse'
 
 interface IProps extends ConnectProps {
 }
@@ -45,8 +46,7 @@ class News extends Component<IProps, IState> {
             <View className="title">{news.title}</View>
             <View className="desc">{`${news.time} ${news.src}`}</View>
             <View className="content">
-              <import src="../../wxParse/wxParse.wxml"/>
-              <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+              <HtmlParse html={news.content}/>
             </View>
           </View>
         ) : (<View className="empty">找不到数据</View>)}

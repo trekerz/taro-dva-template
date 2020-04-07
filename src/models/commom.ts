@@ -12,7 +12,10 @@ interface CommonModel {
 const commonModel: CommonModel = {
   reducers: {
     updateState(state: any, { payload }) {
-      return payload
+      return {
+        ...state,
+        ...payload
+      }
     }
   },
 };

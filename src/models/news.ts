@@ -29,7 +29,6 @@ const newsModel: NewsModelType = {
         ...payload,
       }
       const res: IResponseData<INewsList> = yield call(NewsService.getRecommendList, requestData);
-      console.log('res:', res)
       if (res.code === REQUEST_CODE.SUCCESS.code && res.result) {
         yield put({
           type: 'updateState',
