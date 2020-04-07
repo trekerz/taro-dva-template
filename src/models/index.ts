@@ -1,5 +1,5 @@
-import global from './global'
+import newsModel from './news'
 
 export default [
-  global
+  newsModel
 ]

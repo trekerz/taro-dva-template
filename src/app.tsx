@@ -1,8 +1,8 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
-import Index from './pages/index'
-import dva from './utils/dva'
-import models from './models'
+import Index from './pages/news/index'
+import models from '@/models/index'
+import dva from '@/utils/dva'
 import './app.scss'
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -30,13 +30,16 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/index/index'
+      'pages/news/index',
+      'pages/news/news'
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'black',
+      pullRefresh: 'YES',
+      allowsBounceVertical: 'YES'
     }
   }
 
@@ -51,9 +54,10 @@ class App extends Component {
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
   render () {
+    const props = {} as any;
     return (
       <Provider store={store}>
-        <Index />
+        <Index {...props}/>
       </Provider>
     )
   }
