@@ -32,11 +32,6 @@ const config = {
   plugins: [],
   defineConstants: {
   },
-  // wxParse 需要从开发目录copy过来
-  copy: {
-    patterns: [{ from: "src/wxParse", to: "dist/weapp/wxParse" }],
-    options: {}
-  },
   mini: {
     postcss: {
       pxtransform: {

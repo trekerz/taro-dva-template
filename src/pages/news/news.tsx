@@ -28,12 +28,6 @@ class News extends Component<IProps, IState> {
     const { news } = this.props;
     return news.list.data[this.id];
   }
-
-  componentDidMount() {
-    const news = this.getNews();
-    const wxParse: any = require('@/wxParse/wxParse.js');
-    wxParse.wxParse('article', 'html', `<div>${news.content}</div>`, this.$scope, 5);
-  }
   
   render() {
     const news = this.getNews();
