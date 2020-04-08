@@ -5,9 +5,20 @@
     "no-unused-vars": ["error", { "varsIgnorePattern": "Taro" }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
     "@typescript-eslint/explicit-function-return-type": 0,
-    "@typescript-eslint/no-empty-function": ["warn"],
-    "@typescript-eslint/no-var-requires": true,
-    "import/no-commonjs": true
+    "@typescript-eslint/no-empty-function": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "import/no-commonjs": 2,
+    "import/first": 0,
+    "semi": [2, "always"],
+    "indent": [2, 2],
+    "no-var": 0,
+    "@typescript-eslint/interface-name-prefix": 0,
+    "@typescript-eslint/no-empty-interface": 0,
+    "react/sort-comp": 0,
+    "react/react-in-jsx-scope": 0,
+    "import/prefer-default-export": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "jsx-quotes": ["error", "prefer-double"]
   },
   "parserOptions": {
     "ecmaFeatures": {

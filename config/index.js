@@ -1,3 +1,4 @@
+const path = require("path");
 const config = {
   projectName: 'taro-dva-template',
   date: '2020-1-6',
@@ -31,6 +32,11 @@ const config = {
   plugins: [],
   defineConstants: {
   },
+  // wxParse 需要从开发目录copy过来
+  copy: {
+    patterns: [{ from: "src/wxParse", to: "dist/weapp/wxParse" }],
+    options: {}
+  },
   mini: {
     postcss: {
       pxtransform: {
@@ -44,7 +50,7 @@ const config = {
         }
       },
       cssModules: {
-        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
+        enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
         config: {
           namingPattern: 'module', // 转换模式，取值为 global/module
           generateScopedName: '[name]__[local]___[hash:base64:5]'
@@ -67,13 +73,23 @@ const config = {
         }
       },
       cssModules: {
-        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
+        enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
         config: {
           namingPattern: 'module', // 转换模式，取值为 global/module
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
     }
+  },
+  // 设置别名
+  alias: {
+    "@/components": path.resolve(__dirname, "..", "src/components"),
+    "@/utils": path.resolve(__dirname, "..", "src/utils"),
+    "@/models": path.resolve(__dirname, "..", "src/models"),
+    "@/static": path.resolve(__dirname, "..", "src/static"),
+    "@/services": path.resolve(__dirname, "..", "src/services"),
+    "@/wxParse": path.resolve(__dirname, "..", "src/wxParse"),
+    "@/type": path.resolve(__dirname, "..", "src/type"),
   }
 }
 

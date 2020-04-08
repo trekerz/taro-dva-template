@@ -7,8 +7,6 @@ declare module "*.css";
 declare module "*.less";
 declare module "*.scss";
 declare module "*.sass";
-declare module "*.styl";
-
 // @ts-ignore
 declare const process: {
   env: {
