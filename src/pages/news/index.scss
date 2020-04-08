@@ -10,18 +10,18 @@
     .news-cell-hd {
       width: 200px;
       height: 200px;
-      background: #f1f1f1;
       margin-right: 24px;
+      background: #f1f1f1;
       .img {
         width: 100%;
         height: 100%;
       }
     } 
     .news-cell-bd {
-      padding: 12px 0;
-      flex: 1;
       display: flex;
+      flex: 1;
       flex-direction: column;
+      padding: 12px 0;
       .title {
         flex: 1;
       }

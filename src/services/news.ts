@@ -7,7 +7,7 @@ export interface INewsList {
     channel: string;
     list: INews[];
     num: number;
-  }
+  };
 }
 
 /** 新闻详情数据 */
@@ -36,6 +36,6 @@ export interface RecommendListParams {
 export class NewsService {
   /** 新闻推荐列表 */
   static getRecommendList(d: RecommendListParams) {
-    return Http.get<INewsList>('get', d)
+    return Http.get<INewsList>('get', d);
   }
 }

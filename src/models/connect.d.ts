@@ -15,7 +15,7 @@ export interface ConnectState {
 }
 
 export interface DispatchAction extends AnyAction {
-  payload?: Object;
+  payload?: Record<string, any>;
 }
 
 export interface ConnectProps extends ConnectState {

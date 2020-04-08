@@ -1,11 +1,10 @@
-import './index.scss'
-import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Image } from '@tarojs/components'
-import { connect } from '@tarojs/redux'
-import { ConnectState, ConnectProps } from '@/models/connect.d'
+import './index.scss';
+import Taro, { Component, Config } from '@tarojs/taro';
+import { View, Image } from '@tarojs/components';
+import { connect } from '@tarojs/redux';
+import { ConnectState, ConnectProps } from '@/models/connect.d';
 
-interface IProps extends ConnectProps {
-}
+type IProps = ConnectProps
 
 interface IState {
 
@@ -54,7 +53,7 @@ class Index extends Component<IProps, IState> {
   }
 
   gotoNews(index: number) {
-    Taro.navigateTo({ url : `/pages/news/news?id=${index}`})
+    Taro.navigateTo({ url : `/pages/news/news?id=${index}`});
   }
 
   render() {
@@ -64,7 +63,7 @@ class Index extends Component<IProps, IState> {
         {list.data.map((item, i) => {
           return (
             <View className="news-cell" key={item.title} onClick={this.gotoNews.bind(this, i)}>
-              <View className="news-cell-hd"><Image src={item.pic} className="img" mode="aspectFit"/></View>
+              <View className="news-cell-hd"><Image src={item.pic} className="img" mode="aspectFit" /></View>
               <View className="news-cell-bd">
                 <View className="title">{item.title}</View>
                 <View className="desc">
@@ -72,11 +71,11 @@ class Index extends Component<IProps, IState> {
                 </View>
               </View>
             </View>
-          )
+          );
         })}
       </View>
-    )
+    );
   }
 }
 
-export default Index
+export default Index;

@@ -21,13 +21,13 @@ const newsModel: NewsModelType = {
   },
   effects: {
     *fetchNews({ payload }, { call, put, select }) {
-      const state: ConnectState = yield select(state => state); 
-      const { list } = state.news;
+      const newState: ConnectState = yield select(state => state); 
+      const { list } = newState.news;
       const requestData: RecommendListParams = {
         ...list.params,
         start: list.params.start + list.params.num,
         ...payload,
-      }
+      };
       const res: IResponseData<INewsList> = yield call(NewsService.getRecommendList, requestData);
       if (res.code === REQUEST_CODE.SUCCESS.code && res.result) {
         yield put({
@@ -44,5 +44,5 @@ const newsModel: NewsModelType = {
       }
     }
   }
-}
+};
 export default modelExtend(commonModel, newsModel);

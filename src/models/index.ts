@@ -1,5 +1,5 @@
-import newsModel from './news'
+import newsModel from './news';
 
 export default [
   newsModel
-]
+];

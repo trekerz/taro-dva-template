@@ -1,15 +1,13 @@
-import './news.scss'
-import Taro, { Component, Config } from '@tarojs/taro'
-import { View } from '@tarojs/components'
-import { connect } from '@tarojs/redux'
-import { ConnectState, ConnectProps } from '@/models/connect.d'
-import { HtmlParse } from '@/components/htmlParse'
+import './news.scss';
+import { Component, Config } from '@tarojs/taro';
+import { View } from '@tarojs/components';
+import { connect } from '@tarojs/redux';
+import { ConnectState, ConnectProps } from '@/models/connect.d';
+import { HtmlParse } from '@/components/htmlParse';
 
-interface IProps extends ConnectProps {
-}
+type IProps = ConnectProps
 
 interface IState {
-
 }
 
 @connect((d: ConnectState) => d)
@@ -33,8 +31,8 @@ class News extends Component<IProps, IState> {
 
   componentDidMount() {
     const news = this.getNews();
-    const wxParse: any = require("@/wxParse/wxParse.js");
-    wxParse.wxParse('article', 'html', `<div>${news.content}</div>`, this.$scope, 5)
+    const wxParse: any = require('@/wxParse/wxParse.js');
+    wxParse.wxParse('article', 'html', `<div>${news.content}</div>`, this.$scope, 5);
   }
   
   render() {
@@ -46,13 +44,13 @@ class News extends Component<IProps, IState> {
             <View className="title">{news.title}</View>
             <View className="desc">{`${news.time} ${news.src}`}</View>
             <View className="content">
-              <HtmlParse html={news.content}/>
+              <HtmlParse html={news.content} />
             </View>
           </View>
         ) : (<View className="empty">找不到数据</View>)}
       </View>
-    )
+    );
   }
 }
 
-export default News
+export default News;

@@ -15,7 +15,7 @@ const commonModel: CommonModel = {
       return {
         ...state,
         ...payload
-      }
+      };
     }
   },
 };

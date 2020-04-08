@@ -13,10 +13,10 @@ export interface NewsModelState {
       num: number;
       /** 起始位置，默认0 */
       start: number;
-    }
+    };
     /** 列表数据 */
     data: INews[];
-  }
+  };
 }
 
 export interface NewsModelType {

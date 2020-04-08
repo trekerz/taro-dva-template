@@ -9,47 +9,47 @@ const defaults = {
     res: '#4caf50',
     error: '#f20404'
   }
-}
+};
 
 function printBuffer(logEntry, options) {
   const {
     logger,
     colors
-  } = options
+  } = options;
 
-  let {
+  const {
     title,
     started,
     req,
     res
-  } = logEntry
+  } = logEntry;
 
   // Message
-  const headerCss = ['color: gray; font-weight: lighter;']
-  const styles = s => `color: ${s}; font-weight: bold;`
+  const headerCss = ['color: gray; font-weight: lighter;'];
+  const styles = s => `color: ${s}; font-weight: bold;`;
 
   // render
-  logger.group(`%c ${title} @${started}`, ...headerCss)
-  logger.log('%c req', styles(colors.req), req)
-  logger.log('%c res', styles(colors.res), res)
-  logger.groupEnd()
+  logger.group(`%c ${title} @${started}`, ...headerCss);
+  logger.log('%c req', styles(colors.req), req);
+  logger.log('%c res', styles(colors.res), res);
+  logger.groupEnd();
 }
 
 interface ILogEntry {
-  title?: string
-  req?: any
-  res?: any
-  started?: object // 触发时间
+  title?: string;
+  req?: any;
+  res?: any;
+  started?: object; // 触发时间
 }
 
 function createLogger(options: ILogEntry = {}) {
-  const loggerOptions = Object.assign({}, defaults, options)
-  const logEntry = options
-  logEntry.started = new Date()
-  printBuffer(logEntry, Object.assign({}, loggerOptions))
+  const loggerOptions = Object.assign({}, defaults, options);
+  const logEntry = options;
+  logEntry.started = new Date();
+  printBuffer(logEntry, Object.assign({}, loggerOptions));
 }
 
 export {
   defaults,
   createLogger
-}
+};

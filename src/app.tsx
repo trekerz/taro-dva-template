@@ -1,9 +1,9 @@
-import Taro, { Component, Config } from '@tarojs/taro'
-import { Provider } from '@tarojs/redux'
-import Index from './pages/news/index'
-import models from '@/models/index'
-import dva from '@/utils/dva'
-import './app.scss'
+import Taro, { Component, Config } from '@tarojs/taro';
+import { Provider } from '@tarojs/redux';
+import Index from './pages/news/index';
+import models from '@/models/index';
+import dva from '@/utils/dva';
+import './app.scss';
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -15,9 +15,9 @@ const dvaApp = dva.createApp({
   initialState: {},
   enableLog: false,
   models
-})
+});
 
-const store = dvaApp.getStore()
+const store = dvaApp.getStore();
 
 class App extends Component {
 
@@ -57,10 +57,10 @@ class App extends Component {
     const props = {} as any;
     return (
       <Provider store={store}>
-        <Index {...props}/>
+        <Index {...props} />
       </Provider>
-    )
+    );
   }
 }
 
-Taro.render(<App />, document.getElementById('app'))
+Taro.render(<App />, document.getElementById('app'));

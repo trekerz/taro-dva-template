@@ -1,9 +1,9 @@
 /**
  * 接口地址
  */
-export const baseUrl = 'https://way.jd.com/jisuapi/'
+export const baseUrl = 'https://way.jd.com/jisuapi/';
 
-export const APPKEY = 'bdf37705a1cc9fe12c586640d04bca00'
+export const APPKEY = 'bdf37705a1cc9fe12c586640d04bca00';
 
 /**
  * 接口业务返回码
@@ -24,4 +24,4 @@ export const REQUEST_CODE = {
     code: '-999',
     text: '网络错误'
   }
-}
+};
